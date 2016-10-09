@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using SAPFEWSELib;
 using System.Windows.Forms;
+using SapGuiScripting.@base;
 
 namespace HelloWorld
 {
@@ -13,10 +14,9 @@ namespace HelloWorld
         //main method somewhere else 
         public static void Main(string[] args)
         {
-            SapGuiScript script = new SapGuiScript();
-            //GuiSession session = script.getSession();
-            //ISapCTextField component = (ISapCTextField)session.FindById("/app/con[0]/ses[0]/wnd[0]/usr/ctxtSEOCLASS-CLSNAME");
-            //component.Text = "ac";
+            FirstSessionProvider provider = new FirstSessionProvider();
+            GuiSession session = provider.GetSession();
+            session.StartRequest += delegate (GuiSession guiSession) { System.Diagnostics.Debug.Write("yeees"); };
             Application.Run(new Form1());
             
         }

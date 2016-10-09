@@ -16,7 +16,9 @@ namespace HelloWorld
         {
             FirstSessionProvider provider = new FirstSessionProvider();
             GuiSession session = provider.GetSession();
-            session.StartRequest += delegate (GuiSession guiSession) { System.Diagnostics.Debug.Write("yeees"); };
+            int count = 0;
+            session.StartRequest += delegate (GuiSession guiSession) {
+                count++;System.Diagnostics.Debug.Write(count); };
             Application.Run(new Form1());
             
         }

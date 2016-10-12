@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="actions\ButtonPressAction.cs" />
     <Compile Include="actions\ClassBuilderQuickSearchAction.cs" />
+    <Compile Include="actions\InputSetTextAction.cs" />
     <Compile Include="actions\SapGuiAction.cs" />
     <Compile Include="base\ActiveSessionProvider.cs" />
     <Compile Include="base\FirstSessionProvider.cs" />

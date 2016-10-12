@@ -1,7 +1,7 @@
 ﻿using SAPFEWSELib;
 
 namespace SapGuiScripting.@base {
-    internal class ActiveSessionProvider : GuiSessionProvider {
+    public class ActiveSessionProvider : GuiSessionProvider {
 
         public GuiSession GetSession() {
             SapROTWr.CSapROTWrapper sapRotWrapper = new SapROTWr.CSapROTWrapper();

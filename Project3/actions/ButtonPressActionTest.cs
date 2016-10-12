@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SAPFEWSELib;
-using SapGuiScripting;
-using SapGuiScripting.actions;
+﻿using SapGuiScripting.actions;
 using SapGuiScripting.@base;
+using SAPFEWSELib;
 using Xunit;
 
-namespace SapGuiScriptingTest {
+namespace SapGuiScriptingTest.actions {
     public class ButtonPressActionTest {
 
         [Fact]

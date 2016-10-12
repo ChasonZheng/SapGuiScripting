@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using SapGuiScripting.actions;
+using SapGuiScripting.@base;
 
 namespace HelloWorld {
 
@@ -25,14 +27,17 @@ namespace HelloWorld {
             InitializeComponent();
 
             // register the event that is fired after the key press.
-            hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(hook_KeyPressed);
-            // register the control + alt + F12 combination as hot key.
+            hook.KeyPressed += new EventHandler<KeyPressedEventArgs>(Hook_KeyPressed);
+            //ALT+F12
             hook.RegisterHotKey(HelloWorld.ModifierKeys.Alt, Keys.F12);
         }
 
-        void hook_KeyPressed(object sender, KeyPressedEventArgs e) {
-            // show the keys pressed in a label.
+        void Hook_KeyPressed(object sender, KeyPressedEventArgs e) {
             label1.Text = e.Modifier.ToString() + " + " + e.Key.ToString();
+            ActiveSessionProvider provider = new ActiveSessionProvider();
+
+            InputSetTextAction action = new InputSetTextAction();
+            action.Execute(provider.GetSession());
         }
 
         private void Form1_Load(object sender, EventArgs e) {

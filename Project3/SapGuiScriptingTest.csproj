@@ -73,7 +73,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonPressActionTest.cs" />
+    <Compile Include="actions\ButtonPressActionTest.cs" />
+    <Compile Include="actions\InputSetTextActionTest.cs" />
     <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>

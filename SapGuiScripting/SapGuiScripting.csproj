@@ -49,7 +49,10 @@
     <Compile Include="actions\ButtonPressAction.cs" />
     <Compile Include="actions\ClassBuilderQuickSearchAction.cs" />
     <Compile Include="actions\InputSetTextAction.cs" />
+    <Compile Include="actions\Action.cs" />
+    <Compile Include="actions\KeyPressAction.cs" />
     <Compile Include="actions\SapGuiAction.cs" />
+    <Compile Include="actions\TextProvider.cs" />
     <Compile Include="base\ActiveSessionProvider.cs" />
     <Compile Include="base\FirstSessionProvider.cs" />
     <Compile Include="base\GuiSessionProvider.cs" />
@@ -62,6 +65,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ABAPEDITORSCRIPTINGLib">

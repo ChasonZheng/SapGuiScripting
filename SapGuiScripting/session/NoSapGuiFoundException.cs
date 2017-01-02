@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SapGuiScripting {
-    class NoSapGuiFoundException : Exception {
-
+namespace SapGuiScripting.session {
+    internal class NoSapGuiFoundException : Exception {
         public NoSapGuiFoundException() {
         }
 

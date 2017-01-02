@@ -1,25 +1,18 @@
-﻿using MySql.Data;
-using MySql.Data.MySqlClient;
-using System;
+﻿using MySql.Data.MySqlClient;
 
 namespace Database {
     public class Database {
+        private static Database _instance;
+
         private Database() {
         }
 
-        private string databaseName = string.Empty;
-        public string DatabaseName {
-            get { return databaseName; }
-            set { databaseName = value; }
-        }
+        public string DatabaseName { get; set; } = string.Empty;
 
         public string Password { get; set; }
-        private MySqlConnection connection = null;
-        public MySqlConnection Connection {
-            get { return connection; }
-        }
 
-        private static Database _instance = null;
+        public MySqlConnection Connection { get; private set; }
+
         public static Database Instance() {
             if (_instance == null)
                 _instance = new Database();
@@ -27,13 +20,14 @@ namespace Database {
         }
 
         public bool IsConnect() {
-            bool result = true;
+            var result = true;
             if (Connection == null) {
-                if (String.IsNullOrEmpty(databaseName))
+                if (string.IsNullOrEmpty(DatabaseName))
                     result = false;
-                string connstring = string.Format("Server=localhost; database={0}; UID=UserName; password=your password", databaseName);
-                connection = new MySqlConnection(connstring);
-                connection.Open();
+                var connstring = string.Format("Server=localhost; database={0}; UID=UserName; password=your password",
+                    DatabaseName);
+                Connection = new MySqlConnection(connstring);
+                Connection.Open();
                 result = true;
             }
 
@@ -41,7 +35,7 @@ namespace Database {
         }
 
         public void Close() {
-            connection.Close();
+            Connection.Close();
         }
     }
 }

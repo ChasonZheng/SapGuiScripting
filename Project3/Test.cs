@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Diagnostics;
+using SapGuiScripting.session;
 using SAPFEWSELib;
-using SapGuiScripting;
-using SapGuiScripting.actions;
-using SapGuiScripting.@base;
-using TEXTEDITLib;
 using Xunit;
 
 namespace SapGuiScriptingTest {
@@ -14,18 +8,17 @@ namespace SapGuiScriptingTest {
 
         [Fact]
         public void TestSimple() {
-            Console.WriteLine("dasdsaasdasd");
-            System.Diagnostics.Debug.WriteLine("dasdsaasdasd");
+            Debug.WriteLine("dasdsaasdasd");
             FirstSessionProvider provider = new FirstSessionProvider();
             GuiSession session = provider.GetSession();
-            session.StartRequest += delegate (GuiSession guiSession) { System.Diagnostics.Debug.Write("yeees"); };
+            session.StartRequest += delegate { Debug.Write("yeees"); };
             //Application.Run(new Form1());
             //while (true) {
             //System.Threading.Thread.Sleep(1000);
             //}
-
-
         }
 
+        public static void Main() {
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace HelloWorld
+﻿namespace SapGuiHotkeysApplication
 {
     partial class Form1
     {

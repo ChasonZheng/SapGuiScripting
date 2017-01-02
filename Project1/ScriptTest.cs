@@ -1,27 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SAPFEWSELib;
+﻿using System.Diagnostics;
 using System.Windows.Forms;
-using SapGuiScripting.@base;
+using SapGuiScripting.session;
+using SAPFEWSELib;
 
-namespace HelloWorld
-{
-    class ScriptTest {
-
-        public static void Main(string[] args)
-        {
+namespace SapGuiHotkeysApplication {
+    internal class ScriptTest {
+        public static void Main(string[] args) {
             FirstSessionProvider provider = new FirstSessionProvider();
             GuiSession session = provider.GetSession();
-            int count = 0;
-            session.StartRequest += delegate (GuiSession guiSession) {
+            var count = 0;
+            session.StartRequest += delegate {
                 count++;
-                System.Diagnostics.Debug.Write(count);
+                Debug.Write(count);
             };
             Application.Run(new Form1());
-            
         }
     }
 }

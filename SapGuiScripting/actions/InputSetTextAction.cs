@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using SAPFEWSELib;
+﻿using SAPFEWSELib;
 
 namespace SapGuiScripting.actions {
-    public class InputSetTextAction : SapGuiAction {
+    public class InputSetTextAction : Action {
+        private readonly string path;
 
         internal TextProvider TextProvider;
-        internal string path;
 
-        public InputSetTextAction(GuiSessionProvider sessionProvider, TextProvider textProvider, string path) : base(sessionProvider) {
-            this.TextProvider = textProvider;
+        public InputSetTextAction(TextProvider textProvider, string path) {
+            TextProvider = textProvider;
             this.path = path;
         }
 
-        public override void Excecute() {
-            GuiSession session = GetSession();
-            GuiTextField field = session.FindById(this.path) as GuiTextField;
-            if (field != null) field.Text = TextProvider.GetText();
+        public void Execute(ActionContext context) {
+            GuiTextField textField = (GuiTextField) context.GetSession().FindById(path);
+            if (textField != null) {
+                textField.Text = TextProvider.GetText();
+            }
         }
     }
 }

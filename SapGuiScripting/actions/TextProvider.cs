@@ -1,7 +1,5 @@
-﻿using System;
-
-namespace SapGuiScripting.actions {
+﻿namespace SapGuiScripting.actions {
     public interface TextProvider {
-        String GetText();
+        string GetText();
     }
 }

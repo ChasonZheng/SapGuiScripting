@@ -1,4 +1,4 @@
-﻿namespace SapGuiScriptingTest
+﻿namespace SapGuiScriptingGUITest
 {
     partial class TestForm
     {

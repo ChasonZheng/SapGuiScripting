@@ -83,14 +83,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="actions\ActionContext.cs" />
+    <Compile Include="actions\ActionDecorator.cs" />
     <Compile Include="actions\ButtonPressAction.cs" />
+    <Compile Include="actions\filters\ActionFilter.cs" />
+    <Compile Include="actions\filters\ActionRuleset.cs" />
+    <Compile Include="actions\filters\ruleset\FocusChangedFilter.cs" />
+    <Compile Include="actions\filters\ruleset\ProgramFilter.cs" />
     <Compile Include="actions\InputSetTextAction.cs" />
     <Compile Include="actions\Action.cs" />
+    <Compile Include="actions\parameterTypeSuggestion\MethodParameterFactory.cs" />
+    <Compile Include="actions\parameterTypeSuggestion\MethodParameterTypeSuggestion.cs" />
+    <Compile Include="actions\parameterTypeSuggestion\MethodParameter.cs" />
+    <Compile Include="actions\parameterTypeSuggestion\ParameterTypeSuggestion.cs" />
+    <Compile Include="actions\parameterTypeSuggestion\ParameterTypeSuggestionAction.cs" />
+    <Compile Include="actions\StartTransactionAction.cs" />
     <Compile Include="actions\TextProvider.cs" />
     <Compile Include="session\ActiveSessionProvider.cs" />
     <Compile Include="session\FirstSessionProvider.cs" />
+    <Compile Include="session\GuiSession.cs" />
     <Compile Include="session\GuiSessionProvider.cs" />
+    <Compile Include="session\InvalidPathException.cs" />
     <Compile Include="session\NoSapGuiFoundException.cs" />
+    <Compile Include="session\SapGuiSession.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Interop.SAPFEWSELib">

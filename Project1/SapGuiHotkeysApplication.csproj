@@ -86,7 +86,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ScriptTest.cs" />
+    <Compile Include="StartApplication.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

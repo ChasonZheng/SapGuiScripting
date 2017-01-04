@@ -3,11 +3,9 @@ using System.Windows.Forms;
 using SapGuiHotkeysApplication.hotkey;
 using SapGuiScripting.actions;
 using SapGuiScripting.session;
-using SAPFEWSELib;
 using Action = SapGuiScripting.actions.Action;
-using Application = System.Windows.Forms.Application;
 
-namespace SapGuiScriptingTest {
+namespace SapGuiScriptingGUITest {
     public partial class TestForm : Form, ActionContext {
         private readonly Action actionToTest;
         private readonly KeyboardHook hook = new KeyboardHook();

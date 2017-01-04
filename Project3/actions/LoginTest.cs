@@ -5,9 +5,9 @@ using Xunit;
 using Moq;
 
 namespace SapGuiScriptingTest.actions {
-    public class ButtonPressActionTest {
+    public class LoginTest {
         [Fact]
-        public void TestSimple() {
+        public void TestLogin() {
 
             var contextMock = new Mock<ActionContext>();
             FirstSessionProvider sessionProvider = new FirstSessionProvider();

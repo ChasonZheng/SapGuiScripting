@@ -124,9 +124,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="actions\ButtonPressActionTest.cs" />
+    <Compile Include="actions\LoginTest.cs" />
     <Compile Include="actions\InputSetTextActionTest.cs" />
-    <Compile Include="Test.cs" />
+    <Compile Include="actions\UnknownPathExceptionTest.cs" />
+    <Compile Include="ResearchTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Project1\SapGuiHotkeysApplication.csproj">

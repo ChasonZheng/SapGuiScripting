@@ -1,4 +1,5 @@
 ﻿using SAPFEWSELib;
+using GuiSession = SapGuiScripting.session.GuiSession;
 
 namespace SapGuiScripting.actions {
     public class ButtonPressAction : Action {

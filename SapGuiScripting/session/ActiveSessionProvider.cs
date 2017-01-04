@@ -20,7 +20,7 @@ namespace SapGuiScripting.session {
             GuiApplication sapGuiApp = engine as GuiApplication;
             if (sapGuiApp.ActiveSession == null)
                 throw new NoSapGuiFoundException("No active session detected - is Sap GUI focused?");
-            return sapGuiApp.ActiveSession;
+            return new SapGuiSession(sapGuiApp.ActiveSession);
         }
     }
 }

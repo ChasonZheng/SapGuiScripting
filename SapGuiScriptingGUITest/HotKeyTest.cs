@@ -1,10 +1,9 @@
 ﻿using System.Windows.Forms;
 using SapGuiScripting.actions;
-using static System.Windows.Forms.Application;
 
-namespace SapGuiScriptingTest {
+namespace SapGuiScriptingGUITest {
     public class HotKeyTest {
-        private Action actionToTest;
+        private readonly Action actionToTest;
 
         public HotKeyTest(Action actionToTest) {
             this.actionToTest = actionToTest;

@@ -1,6 +1,4 @@
-﻿using SAPFEWSELib;
-
-namespace SapGuiScripting.session {
+﻿namespace SapGuiScripting.session {
     public interface GuiSessionProvider {
         GuiSession GetSession();
     }

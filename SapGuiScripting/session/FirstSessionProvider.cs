@@ -18,9 +18,9 @@ namespace SapGuiScripting.session {
             if (engine == null) throw new NoSapGuiFoundException("no engine - wie kann das sein?");
             GuiApplication sapGuiApp = engine as GuiApplication;
 
-            GuiConnection connection = sapGuiApp.Children.Cast<GuiConnection>().FirstOrDefault();
+            GuiConnection connection = sapGuiApp?.Children.Cast<GuiConnection>().FirstOrDefault();
             if (connection == null) throw new NoSapGuiFoundException("no connection - Are you logged into any system?");
-            foreach (GuiSession session in connection.Sessions) return session;
+            foreach (SAPFEWSELib.GuiSession session in connection.Sessions) return new SapGuiSession(session);
             return null;
         }
     }

@@ -3,11 +3,10 @@
 namespace SapGuiScripting.session {
     public interface GuiSession {
         GuiComponent FindById(string path);
+        string ToString();
         string GetCurrentProgram();
+        string GetCurrentScreen();
         void StartTransaction(string transaction);
-
-        //event ISapSessionEvents_StartRequestEventHandler StartRequest;
-        //event ISapSessionEvents_FocusChangedEventHandler FocusChanged;
 
         event StartRequestHandler StartRequest;
         event FocusChangedHandler FocusChanged;

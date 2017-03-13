@@ -78,6 +78,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationConfig.cs" />
     <Compile Include="hotkey\ModifierKeys.cs" />
     <Compile Include="hotkey\KeyboardHook .cs" />
     <Compile Include="Form1.cs">

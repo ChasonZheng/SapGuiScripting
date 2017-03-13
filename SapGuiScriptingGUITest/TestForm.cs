@@ -30,7 +30,12 @@ namespace SapGuiScriptingGUITest {
         }
 
         private void Hook_KeyPressed(object sender, KeyPressedEventArgs e) {
-            actionToTest.Execute(this);
+            try {
+                actionToTest.Execute(this);
+            }
+            catch (Exception) {
+                System.Diagnostics.Debug.WriteLine("Action failed");
+            }
         }
     }
 }

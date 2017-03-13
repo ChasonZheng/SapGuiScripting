@@ -127,6 +127,7 @@
     <Compile Include="actions\LoginTest.cs" />
     <Compile Include="actions\InputSetTextActionTest.cs" />
     <Compile Include="actions\UnknownPathExceptionTest.cs" />
+    <Compile Include="parameterSignatureSuggestion\ParameterSignatureSuggestionTest.cs" />
     <Compile Include="ResearchTest.cs" />
   </ItemGroup>
   <ItemGroup>

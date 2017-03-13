@@ -9,16 +9,15 @@ namespace SapGuiScripting.actions.parameterTypeSuggestion {
             this.tableControl = tableControl;
         }
 
-        public List<MethodParameter> CreateParameters() {
+        public List<SapGuiMethodParameter> CreateParameters() {
             GuiTableRow row = null;
-            var resultList = new List<MethodParameter>();
+            var resultList = new List<SapGuiMethodParameter>();
             var i = 0;
-            MethodParameter parameter = null;
-
+            SapGuiMethodParameter parameter = null;
             do {
                 row = tableControl.GetAbsoluteRow(i);
                 i++;
-                parameter = createParameterByRow(row);
+                parameter = CreateParameterByRow(row);
                 if (parameter != null) {
                     resultList.Add(parameter);
                 }
@@ -26,16 +25,21 @@ namespace SapGuiScripting.actions.parameterTypeSuggestion {
             return resultList;
         }
 
-        private MethodParameter createParameterByRow(GuiTableRow row) {
-            GuiComponent component = row.Item(1);
-            GuiTextField textField = null;
+        private SapGuiMethodParameter CreateParameterByRow(ISapTableRowTarget row) {
+            GuiComponent parameterNameComponent = row.Item(1);
+            GuiTextField parameterName = null;
             try {
-                 textField = (GuiTextField) component;
+                parameterName = (GuiTextField) parameterNameComponent;
             } catch (System.Exception) {
                 return null;
             }
-            if (textField.Text != "") {
-
+            if (parameterName.Text != "") {
+                return new SapGuiMethodParameter(
+                    (GuiTextField) row.Item(2),
+                    (GuiTextField)row.Item(3),
+                    (GuiCheckBox)row.Item(4),
+                    (GuiTextField)row.Item(5)
+                );
             }
             return null;
         }

@@ -8,11 +8,8 @@ namespace SapGuiScripting.session {
 
         public SapGuiSession(SAPFEWSELib.GuiSession session) {
             this.session = session;
-            session.StartRequest += delegate {
-                StartRequest?.Invoke(this);
-            };
-            session.FocusChanged += DelegateFocusChanged;
         }
+
 
         public GuiComponent FindById(string path) {
             GuiComponent component = null;
@@ -28,13 +25,20 @@ namespace SapGuiScripting.session {
             return session.Info.Program;
         }
 
+        public string GetCurrentScreen() {
+            return session.Info.ScreenNumber.ToString();
+        }
+
         public void StartTransaction(string transaction) {
             session.StartTransaction(transaction);
         }
 
-
-        public void DelegateFocusChanged(SAPFEWSELib.GuiSession currentSession, GuiVComponent newFocusedControl) {
-            FocusChanged?.Invoke(this, newFocusedControl);
+        public override string ToString() {
+            //return "faked";
+            if (session == null) {
+                System.Diagnostics.Debug.Write("NULL WIE KANN DAS SEIN :(");
+            }
+            return session.Name;
         }
 
         public event StartRequestHandler StartRequest;

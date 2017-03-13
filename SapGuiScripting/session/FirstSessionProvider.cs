@@ -20,7 +20,9 @@ namespace SapGuiScripting.session {
 
             GuiConnection connection = sapGuiApp?.Children.Cast<GuiConnection>().FirstOrDefault();
             if (connection == null) throw new NoSapGuiFoundException("no connection - Are you logged into any system?");
-            foreach (SAPFEWSELib.GuiSession session in connection.Sessions) return new SapGuiSession(session);
+            foreach (SAPFEWSELib.GuiSession session in connection.Sessions) {
+                return new SapGuiSession(session);
+            }
             return null;
         }
     }

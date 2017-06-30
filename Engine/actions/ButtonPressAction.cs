@@ -1,4 +1,5 @@
-﻿using SAPFEWSELib;
+﻿using System;
+using SAPFEWSELib;
 using GuiSession = Engine.session.GuiSession;
 
 namespace Engine.actions {
@@ -10,6 +11,7 @@ namespace Engine.actions {
         }
 
         public void Execute(ActionContext context) {
+            Console.WriteLine("Button press action execution");
             GuiSession session = context.GetSession();
             GuiButton button = (GuiButton) session.FindById(path);
             button?.Press();

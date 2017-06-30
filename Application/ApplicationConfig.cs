@@ -43,13 +43,14 @@ namespace Application {
                 action.Execute(context);
             } catch (Exception exception) {
                 System.Diagnostics.Debug.WriteLine(exception.Message);
+                System.Diagnostics.Debug.WriteLine(exception.StackTrace);
             }
         }
 
         public void Start() {
             mainForm = new Form1();
             hook.KeyPressed += Hook_KeyPressed;
-            //Application.
+            System.Windows.Forms.Application.Run(mainForm);
         }
 
     }

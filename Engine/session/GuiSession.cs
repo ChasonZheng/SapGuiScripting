@@ -7,6 +7,10 @@ namespace Engine.session {
         string GetCurrentProgram();
         string GetCurrentScreen();
         void StartTransaction(string transaction);
+        string GetIndex();
+        string GetWindowIndex();
+        string GetConnectionIndex();
+        string GetId();
 
         event StartRequestHandler StartRequest;
         event FocusChangedHandler FocusChanged;

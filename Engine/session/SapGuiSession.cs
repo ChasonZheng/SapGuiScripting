@@ -33,11 +33,24 @@ namespace Engine.session {
             session.StartTransaction(transaction);
         }
 
+        public string GetIndex() {
+            return session.Info.SystemSessionId;
+        }
+
+        public string GetWindowIndex() {
+            return session.ActiveWindow.Id;
+        }
+
+        public string GetConnectionIndex() {
+            GuiConnection connection = (GuiConnection) session.Parent;
+            return connection.Name;
+        }
+
+        public string GetId() {
+            return session.Id;
+        }
+
         public override string ToString() {
-            //return "faked";
-            if (session == null) {
-                System.Diagnostics.Debug.Write("NULL WIE KANN DAS SEIN :(");
-            }
             return session.Name;
         }
 

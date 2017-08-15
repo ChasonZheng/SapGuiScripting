@@ -103,6 +103,8 @@
     <Compile Include="actions\parameterTypeSuggestion\ParameterTypeSuggestion.cs" />
     <Compile Include="actions\ParameterTypeSuggestionAction.cs" />
     <Compile Include="actions\parameterTypeSuggestion\SuggestionConsumer.cs" />
+    <Compile Include="session\Interface1.cs" />
+    <Compile Include="text\RemoveTextBlock.cs" />
     <Compile Include="actions\StartTransactionAction.cs" />
     <Compile Include="actions\TextProvider.cs" />
     <Compile Include="session\ActiveSession.cs" />
@@ -114,6 +116,7 @@
     <Compile Include="session\NoSapGuiFoundException.cs" />
     <Compile Include="session\NullSession.cs" />
     <Compile Include="session\SapGuiSession.cs" />
+    <Compile Include="text\TextTransform.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Interop.SAPFEWSELib">
@@ -198,7 +201,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="actions\removeTextBlockAction\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

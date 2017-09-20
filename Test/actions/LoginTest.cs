@@ -1,12 +1,13 @@
 ﻿using Engine.actions;
 using Engine.session;
 using SAPFEWSELib;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
 namespace Test.actions {
+    [TestClass]
     public class LoginTest {
-        [Fact]
+        [TestMethod]
         public void TestLogin() {
 
             var contextMock = new Mock<ActionContext>();

@@ -3,21 +3,12 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Application.hotkey;
 using Engine.actions;
+using Engine.controller;
+using Engine.controller.hotkeys;
 using Action = Engine.actions.Action;
 
 namespace Application {
-    public class ApplicationConfig {
-        private struct Hotkey {
-            private readonly ModifierKeys modifier;
-            private readonly Keys key;
-
-
-            public Hotkey(ModifierKeys modifier, Keys key) {
-                this.modifier = modifier;
-                this.key = key;
-
-            }
-        }
+    public class ApplicationConfig : ActionMap {
 
         private Form1 mainForm;
         private readonly ActionContext context = new ActiveActionContext();
@@ -53,5 +44,16 @@ namespace Application {
             System.Windows.Forms.Application.Run(mainForm);
         }
 
+        public void RegisterOnHotKey(Hotkey hotkey, Action action) {
+            actions.Add(hotkey, action);
+        }
+    
+        public void RegisterOnFocusChanged(FocusChangedContext context, Action action) {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterOnStartTransaction(NewTransactionContext context, Action action) {
+            throw new NotImplementedException();
+        }
     }
 }

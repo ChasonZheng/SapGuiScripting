@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -83,7 +82,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="actions\ActionContext.cs" />
@@ -103,6 +101,11 @@
     <Compile Include="actions\parameterTypeSuggestion\ParameterTypeSuggestion.cs" />
     <Compile Include="actions\ParameterTypeSuggestionAction.cs" />
     <Compile Include="actions\parameterTypeSuggestion\SuggestionConsumer.cs" />
+    <Compile Include="controller\ActionMap.cs" />
+    <Compile Include="controller\FocusChangedContext.cs" />
+    <Compile Include="controller\hotkeys\Hotkey.cs" />
+    <Compile Include="controller\hotkeys\ModifierKeys.cs" />
+    <Compile Include="controller\NewTransactionContext.cs" />
     <Compile Include="session\Interface1.cs" />
     <Compile Include="text\RemoveTextBlock.cs" />
     <Compile Include="actions\StartTransactionAction.cs" />
@@ -205,12 +208,6 @@
     <Folder Include="actions\removeTextBlockAction\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.1.0\build\net20\xunit.runner.visualstudio.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

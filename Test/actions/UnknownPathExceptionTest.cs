@@ -1,18 +1,19 @@
 ﻿using System;
 using Engine.session;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.actions {
+    [TestClass]
     public class UnknownPathExceptionTest {
-        [Fact]
+        [TestMethod]
         public void Test() {
             FirstSessionProvider provider = new FirstSessionProvider();
             try {
                 provider.GetSession().FindById("ASdASD");
-                Xunit.Assert.True(false);
+                Assert.IsTrue(false);
             }
             catch (InvalidPathException) {
-                Xunit.Assert.True(true);
+                Assert.IsTrue(true);
             }
         }
     }

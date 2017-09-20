@@ -2,7 +2,7 @@
 
     public class RemoveTextBlock : TextTransform {
         public string Transform(string text) {
-            return text;
+            return text.Substring(0, text.LastIndexOf("_"));
         }
     }
 

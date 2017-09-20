@@ -1,11 +1,12 @@
 ﻿using Moq;
 using Engine.actions;
 using Engine.session;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Test.actions {
+    [TestClass]
     public class InputSetTextActionTest {
-        [Fact]
+        [TestMethod]
         public void TestSimple() {
             FirstSessionProvider provider = new FirstSessionProvider();
             var contextMock = new Mock<ActionContext>();

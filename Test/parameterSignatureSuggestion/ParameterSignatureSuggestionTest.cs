@@ -1,16 +1,16 @@
 ﻿using Engine.actions.parameterTypeSuggestion;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test.parameterSignatureSuggestion {
-    [TestClass]
+    [TestFixture]
     public class ParameterSignatureSuggestionTest : SuggestionConsumer {
         private string type;
         private string modifier;
         private string referenceType;
         private bool hasCallByValue;
 
-        [TestMethod]
-        public void Test() {
+        [Test]
+        public void TestParameterSuggestion() {
             ParameterSignatureSuggestion suggestion = new MethodParameterSignatureSuggestion();
             suggestion.Suggest("A", this);
    //         Xunit.Assert.Null(type);

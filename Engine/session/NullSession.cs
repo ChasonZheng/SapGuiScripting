@@ -41,6 +41,11 @@ namespace Engine.session {
         public override string ToString() {
             return "NullSession hier";
         }
+
+        public GuiVComponent GetInFocus() { 
+            return null;
+        }
+
         public event StartRequestHandler StartRequest;
         public event FocusChangedHandler FocusChanged;
     }

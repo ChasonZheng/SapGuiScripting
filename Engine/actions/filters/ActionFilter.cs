@@ -1,6 +1,5 @@
-﻿using System;
+﻿namespace Engine.actions.filters {
 
-namespace Engine.actions.filters {
     public class ActionFilter : ActionDecorator {
         private readonly ActionRuleset ruleset;
 
@@ -9,7 +8,7 @@ namespace Engine.actions.filters {
         }
 
         public override void Execute(ActionContext context) {
-            if (this.ruleset.IsAllowedToExecute(context) == true) {
+            if (ruleset.IsAllowedToExecute(context)) {
                 base.Execute(context);
             }
         }

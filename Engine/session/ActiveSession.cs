@@ -71,16 +71,6 @@ namespace Engine.session {
             GetSession().FindById(transaction);
         }
 
-        public string GetIndex() {
-            return GetSession().GetIndex();
-        }
-        public string GetWindowIndex() {
-            return GetSession().GetWindowIndex();
-        }
-
-        public string GetConnectionIndex() {
-            return GetSession().GetConnectionIndex();
-        }
         public string GetId() {
             return GetSession().GetId();
         }
@@ -104,6 +94,10 @@ namespace Engine.session {
                 return new NullSession();
             }
             return session;
+        }
+
+        public GuiVComponent GetInFocus() {
+            return GetSession().GetInFocus();
         }
 
         public event StartRequestHandler StartRequest;

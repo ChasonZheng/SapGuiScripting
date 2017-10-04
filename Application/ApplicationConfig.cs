@@ -24,18 +24,25 @@ namespace Application {
 
             //Register action
             hook.RegisterHotKey(modifier, key);
+            Console.WriteLine("Registered");
         }
 
         private void Hook_KeyPressed(object sender, KeyPressedEventArgs e) {
+            //Console.WriteLine("HK pressed" + e.Modifier + e.Key);
             Hotkey hotkey = new Hotkey(e.Modifier, e.Key);
-            Action action = actions[hotkey];
-            if (action == null) return;
-            try {
-                action.Execute(context);
-            } catch (Exception exception) {
-                System.Diagnostics.Debug.WriteLine(exception.Message);
-                System.Diagnostics.Debug.WriteLine(exception.StackTrace);
-            }
+            Console.WriteLine("HK pressed" + e.Modifier + e.Key);
+
+            if (actions.TryGetValue(hotkey, out Action action)) {
+                try {
+                    action.Execute(context);
+                } catch (Exception exception) {
+                    System.Diagnostics.Debug.WriteLine(exception.Message);
+                    System.Diagnostics.Debug.WriteLine(exception.StackTrace);
+                }
+            } else {
+                Console.WriteLine("Keine action zu" + e.Modifier + e.Key);
+                return;
+            };
         }
 
         public void Start() {
@@ -53,6 +60,10 @@ namespace Application {
         }
 
         public void RegisterOnStartTransaction(NewTransactionContext context, Action action) {
+            throw new NotImplementedException();
+        }
+
+        public void RegisterOnHotKey(object filteredAction, ModifierKeys control, object d) {
             throw new NotImplementedException();
         }
     }

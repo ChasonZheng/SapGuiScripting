@@ -1,11 +1,11 @@
 ﻿using System;
 using Engine.session;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Test.actions {
-    [TestClass]
+    [TestFixture]
     public class UnknownPathExceptionTest {
-        [TestMethod]
+        [Test]
         public void Test() {
             FirstSessionProvider provider = new FirstSessionProvider();
             try {

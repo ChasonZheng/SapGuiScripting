@@ -5,7 +5,7 @@ using SAPFEWSELib;
 namespace Engine.session {
     public class ActiveSessionProvider : GuiSessionProvider {
 
-        private static readonly GuiApplication application = null;
+        private GuiApplication application = null;
         
         public GuiSession GetSession() {
             GuiApplication application = GetApplication();
@@ -21,11 +21,21 @@ namespace Engine.session {
             return new SapGuiSession(session);
         }
 
-        public static GuiApplication GetApplication() {
-            return null;
-            if (application != null) return application;
-
-            
+        public GuiApplication GetApplication() {
+            if (application == null) {
+                SapROTWr.CSapROTWrapper sapRotWrapper = new SapROTWr.CSapROTWrapper();
+                object sapGuilRot = sapRotWrapper.GetROTEntry("SAPGUI");
+                if (sapGuilRot == null) {
+                    throw new NoSapGuiFoundException("No rot object found - is Sap Gui running?");
+                }
+                 application = (GuiApplication) sapGuilRot.GetType().InvokeMember(
+                    "GetScriptingEngine",
+                    System.Reflection.BindingFlags.InvokeMethod,
+                    null,
+                    sapGuilRot,
+                    null);
+            }
+            return application;
         }
     }
 }

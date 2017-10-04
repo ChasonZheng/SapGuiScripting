@@ -18,7 +18,7 @@ namespace UITest {
             // register the event that is fired after the key press.
             hook.KeyPressed += Hook_KeyPressed;
             //CTRL+F12
-            hook.RegisterHotKey(Application.hotkey.ModifierKeys.Control, Keys.F12);
+          //  hook.RegisterHotKey(ModifierKeys.Control, Keys.F12);
         }
 
         public GuiSession GetSession() {

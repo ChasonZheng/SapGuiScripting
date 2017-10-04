@@ -54,6 +54,11 @@ namespace Engine.session {
             return session.Name;
         }
 
+        public GuiVComponent GetInFocus() {
+            GuiVComponent focus = session.ActiveWindow.GuiFocus;
+            return focus;
+        }
+
         public event StartRequestHandler StartRequest;
         public event FocusChangedHandler FocusChanged;
 

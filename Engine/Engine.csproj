@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -30,7 +31,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -82,6 +83,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="actions\ActionContext.cs" />
@@ -101,24 +103,28 @@
     <Compile Include="actions\parameterTypeSuggestion\ParameterTypeSuggestion.cs" />
     <Compile Include="actions\ParameterTypeSuggestionAction.cs" />
     <Compile Include="actions\parameterTypeSuggestion\SuggestionConsumer.cs" />
+    <Compile Include="actions\removeTextBlockAction\RemoveTextBlockToLeftAction.cs" />
+    <Compile Include="text\SeparatorFinder.cs" />
     <Compile Include="controller\ActionMap.cs" />
     <Compile Include="controller\FocusChangedContext.cs" />
     <Compile Include="controller\hotkeys\Hotkey.cs" />
     <Compile Include="controller\hotkeys\ModifierKeys.cs" />
     <Compile Include="controller\NewTransactionContext.cs" />
-    <Compile Include="session\Interface1.cs" />
-    <Compile Include="text\RemoveTextBlock.cs" />
+    <Compile Include="session\GuiSessionProvider.cs" />
+    <Compile Include="session\NthSessionProvider.cs" />
+    <Compile Include="text\RemoveTextBlockToLeft.cs" />
     <Compile Include="actions\StartTransactionAction.cs" />
     <Compile Include="actions\TextProvider.cs" />
     <Compile Include="session\ActiveSession.cs" />
     <Compile Include="session\ActiveSessionProvider.cs" />
     <Compile Include="session\FirstSessionProvider.cs" />
     <Compile Include="session\GuiSession.cs" />
-    <Compile Include="session\GuiSessionProvider.cs" />
     <Compile Include="session\InvalidPathException.cs" />
     <Compile Include="session\NoSapGuiFoundException.cs" />
     <Compile Include="session\NullSession.cs" />
     <Compile Include="session\SapGuiSession.cs" />
+    <Compile Include="text\SeparatorFinderToRight.cs" />
+    <Compile Include="text\SeparatorFinderToLeft.cs" />
     <Compile Include="text\TextTransform.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +133,9 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="nunit.framework, Version=3.8.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.8.1\lib\net40\nunit.framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
@@ -204,10 +213,14 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="actions\removeTextBlockAction\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.8.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

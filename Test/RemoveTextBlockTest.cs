@@ -9,24 +9,40 @@ namespace Test {
         [Test]
         public void TestToLeft() {
 
-            RemoveTextBlockToLeft remove = new RemoveTextBlockToLeft('_');
-            // Assert.AreEqual("/SNP/TE01_CL_", remove.Remove("/SNP/TE01_CL_SCENARIO"));
-            Assert.AreEqual("A_", remove.Remove("A_B"));
-            Assert.AreEqual("A", remove.Remove("A_"));
+            RemoveTextBlockToLeft remove = new RemoveTextBlockToLeft(new TextBlockFinderToLeft('_'));
 
             Assert.AreEqual("A_", remove.Remove("A_", 0));
-            Assert.AreEqual("A_B", remove.Remove("A_B", 0));
+            Assert.AreEqual("_", remove.Remove("A_", 1));
+            Assert.AreEqual("A", remove.Remove("A_", 2));
+            Assert.AreEqual("AA", remove.Remove("A_A", 2));
+            Assert.AreEqual("A_", remove.Remove("A_A", 3));
+            Assert.AreEqual("A_A", remove.Remove("A_AA", 3));
+            Assert.AreEqual("A_", remove.Remove("A_AA", 4));
+            Assert.AreEqual("_A", remove.Remove("_A", 0));
+            Assert.AreEqual("A", remove.Remove("_A", 1));
+            Assert.AreEqual("_", remove.Remove("_A", 2));
 
-            Assert.AreEqual("A", remove.Remove("A_", 1));
-            Assert.AreEqual("A", remove.Remove("A_A", 1));
-            Assert.AreEqual("A_", remove.Remove("A_A", 2));
+            Assert.AreEqual("A_B", remove.Remove("A_B", 0));
+            Assert.AreEqual("_B", remove.Remove("A_B", 1));
+            Assert.AreEqual("AB", remove.Remove("A_B", 2));
+            Assert.AreEqual("A_", remove.Remove("A_B", 3));
+
+            Assert.AreEqual("AAAA", remove.Remove("AA_AA", 3));
+            Assert.AreEqual("_A", remove.Remove("A_A", 1));
+            Assert.AreEqual("AA", remove.Remove("A_A", 2));
+            Assert.AreEqual("ZPLU_", remove.Remove("ZPLU_CL", 7));
         }
 
+        [Test]
         public void TestToRight() {
 
-            //   TextTransform transform = new RemoveTextBlockToLeft();
-            //   Assert.Equals(transform.Transform("/SNP/TE01_CL_SCENARIO"), "/SNP/TE01_CL");
-            //   Assert.Equals(transform.Transform("/SNP/TE01_CL_"), "/SNP/TE01_CL");
+            RemoveTextBlockToRight remove = new RemoveTextBlockToRight(new TextBlockFinderToRight('_'));
+            Assert.AreEqual("_", remove.Remove("A_", 0));
+            Assert.AreEqual("_B", remove.Remove("A_B", 0));
+            Assert.AreEqual("A", remove.Remove("A_", 1));
+            Assert.AreEqual("AA_", remove.Remove("AA_AA", 3));
+            Assert.AreEqual("AA", remove.Remove("A_A", 1));
+            Assert.AreEqual("A_", remove.Remove("A_A", 2));
         }
 
         private void Check() { }

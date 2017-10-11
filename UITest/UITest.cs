@@ -4,6 +4,7 @@ using Engine.actions.removeTextBlockAction;
 using Engine.controller.hotkeys;
 using Engine.session;
 using NUnit.Framework;
+using SAPFEWSELib;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -15,9 +16,16 @@ namespace UITest {
         [Test]
         public void Research() {
 
-            Action action = new RemoveTextBlockToLeftAction('_');
             ApplicationConfig config = new ApplicationConfig();
-            config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.D);
+
+            Action action = new RemoveTextBlockToLeftAction('_', '/');
+            config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Back);
+
+            action = new RemoveTextBlockToRightAction('_', '/');
+            config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Delete);
+
+            //      Action action = new SelectTextBlockToLeftAction();
+            //    config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Left);
             config.Start();
 
         }
@@ -40,6 +48,21 @@ namespace UITest {
             Assert.IsNotNull(provider.GetSession().GetInFocus().Id);
             System.Console.WriteLine("Current focus: " + provider.GetSession().GetInFocus().Id);
             System.Console.WriteLine("Did it");
+        }
+
+        [Test]
+        public void Research2() {
+
+            Thread.Sleep(500);
+            //FirstSessionProvider provider = new FirstSessionProvider();
+            GuiSessionProvider provider = new ActiveSessionProvider();
+
+            GuiCTextField field = (GuiCTextField)provider.GetSession().FindById("/app/con[0]/ses[0]/wnd[0]/usr/ctxtSEOCLASS-CLSNAME");
+            System.Console.WriteLine(field.AccText);
+            System.Console.WriteLine(field.AccLabelCollection);
+            System.Console.WriteLine(field.DisplayedText);
+            System.Console.WriteLine(field.Highlighted);
+            GuiFrameWindow window = (GuiFrameWindow)provider.GetSession().FindById("/app/con[0]/ses[0]/wnd[0]");
         }
 
     }

@@ -120,7 +120,7 @@
     <Compile Include="parameterSignatureSuggestion\ParameterSignatureSuggestionTest.cs" />
     <Compile Include="RemoveTextBlockTest.cs" />
     <Compile Include="ResearchTest.cs" />
-    <Compile Include="text\SeparatorFinderTest.cs" />
+    <Compile Include="text\TextBlockFinderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj">

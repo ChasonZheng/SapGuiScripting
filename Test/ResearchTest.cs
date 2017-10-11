@@ -12,10 +12,7 @@ namespace Test {
         [Test]
         public void Research() {
 
-            // string text = "/SNP/TE01_CL_SCENARIO";
-            // string result = text.Substring(text.IndexOfAny(new char[] { '_' }));
-            //   Assert.AreEqual(result, "/SNP/TE01_CL_");
-            Assert.AreEqual(2, "ABBC".LastIndexOfAny(new char[] { 'B' }, "ABBC".Length - 1 - 0));
+            string[] strings = "/SNP/TE01_CL_SCENARIO".Split(new char[] { '_' });
         }
 
         [Test]

@@ -7,21 +7,27 @@ namespace Engine.actions.removeTextBlockAction {
 
         private readonly RemoveTextBlockToLeft remove;
 
-        public RemoveTextBlockToLeftAction(char[] separators) {
-            this.remove = new RemoveTextBlockToLeft(separators);
+        public RemoveTextBlockToLeftAction(params char[] separators) {
+            this.remove = new RemoveTextBlockToLeft(new TextBlockFinderToLeft(separators));
         }
 
-        public RemoveTextBlockToLeftAction(char separator)
-            : this(new char[] { separator }) { }
+        public const int VK_ENTER = 0x0D; //Right Control key code
+        public const int KEYEVENTF_EXTENDEDKEY = 0x0001; //Key down flag
+        public const int KEYEVENTF_KEYUP = 0x0002; //Key up flag
 
         public void Execute(ActionContext context) {
 
             GuiTextField textField = context.GetSession().GetInFocus() as GuiTextField;
             if (textField == null) return;
             string text = textField.Text;
-            textField.Text = remove.Remove(textField.Text);
-            textField.CaretPosition = textField.Text.Length - 1;
+            text = remove.Remove(textField.Text, textField.CaretPosition);
 
+            int oldPosition = textField.CaretPosition;
+            int difference = textField.Text.Length - text.Length;
+            int newPosition = textField.CaretPosition - difference;
+
+            textField.CaretPosition = newPosition;
+            textField.Text = text;
         }
 
     }

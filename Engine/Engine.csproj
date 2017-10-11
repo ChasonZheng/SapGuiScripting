@@ -103,8 +103,11 @@
     <Compile Include="actions\parameterTypeSuggestion\ParameterTypeSuggestion.cs" />
     <Compile Include="actions\ParameterTypeSuggestionAction.cs" />
     <Compile Include="actions\parameterTypeSuggestion\SuggestionConsumer.cs" />
+    <Compile Include="actions\removeTextBlockAction\SelectTextBlockToLeftAction.cs" />
+    <Compile Include="actions\removeTextBlockAction\RemoveTextBlockToRightAction.cs" />
     <Compile Include="actions\removeTextBlockAction\RemoveTextBlockToLeftAction.cs" />
-    <Compile Include="text\SeparatorFinder.cs" />
+    <Compile Include="text\RemoteTextBlockToRight.cs" />
+    <Compile Include="text\TextBlockFinder.cs" />
     <Compile Include="controller\ActionMap.cs" />
     <Compile Include="controller\FocusChangedContext.cs" />
     <Compile Include="controller\hotkeys\Hotkey.cs" />
@@ -123,8 +126,8 @@
     <Compile Include="session\NoSapGuiFoundException.cs" />
     <Compile Include="session\NullSession.cs" />
     <Compile Include="session\SapGuiSession.cs" />
-    <Compile Include="text\SeparatorFinderToRight.cs" />
-    <Compile Include="text\SeparatorFinderToLeft.cs" />
+    <Compile Include="text\TextBlockFinderToRight.cs" />
+    <Compile Include="text\TextBlockFinderToLeft.cs" />
     <Compile Include="text\TextTransform.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +141,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
+      <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="ABAPEDITORSCRIPTINGLib">

@@ -1,46 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Engine.text {
-
-    public enum Direction {
-        LEFT, RIGHT
-    };
+﻿namespace Engine.text {
 
     public class RemoveTextBlockToLeft {
 
-        private readonly char[] separators;
+        private readonly TextBlockFinder finder;
 
-        public RemoveTextBlockToLeft(char[] separators) {
-            this.separators = separators;
+        public RemoveTextBlockToLeft(TextBlockFinder finder) {
+            this.finder = finder;
         }
 
-        public RemoveTextBlockToLeft(List<char> separators)
-            : this(separators.ToArray()) { }
-
-        public RemoveTextBlockToLeft(char separator)
-            : this(new char[] { separator }) { }
-
-
-        public string Remove(string text) {
-            return Remove(text, text.Length - 1);
-        }
-
-        public string Remove(string text, int startIndex) {
-            int index = GetIndex(text, startIndex);
-            if (index < 0) {
-                return text;
-            }
-            return text.Substring(0, index + 1);
-        }
-
-        private int GetIndex(string text, int startIndex) {
-            int index = text.LastIndexOfAny(separators, startIndex);
-            if (index < 0) return -1;
-            if (separators.Contains(text[startIndex])) {
-                index--;
-            }
-            return index;
+        public string Remove(string text, int fromIndex) {
+            int index = finder.GetIndex(text, fromIndex);
+            if (index < 0) index++;
+            // if (fromIndex - index == 1) {
+            ////  }
+            string result = text.Remove(index, fromIndex - index);
+            return result;
         }
     }
 

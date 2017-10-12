@@ -10,7 +10,7 @@ namespace Application.hotkey {
 
         public KeyboardHook() {
             // register the event of the inner native window.
-            _window.KeyPressed += delegate(object sender, KeyPressedEventArgs args) {
+            _window.KeyPressed += delegate (object sender, KeyPressedEventArgs args) {
                 if (KeyPressed != null)
                     KeyPressed(this, args);
             };
@@ -41,12 +41,17 @@ namespace Application.hotkey {
         /// </summary>
         /// <param name="modifier">The modifiers that are associated with the hot key.</param>
         /// <param name="key">The key itself that is associated with the hot key.</param>
-        public void RegisterHotKey(ModifierKeys modifier, Keys key) {
+        public void RegisterHotKey(Hotkey hotkey) {
             // increment the counter.
             _currentId = _currentId + 1;
 
+
+
             // register the hot key.
-            if (!RegisterHotKey(_window.Handle, _currentId, (uint) modifier, (uint) key))
+            if (!RegisterHotKey(_window.Handle, _currentId, (uint)ModifierKeys.Shift | (uint)ModifierKeys.Control, hotkey.GetKeyUInt()))
+                //if (!RegisterHotKey(_window.Handle, _currentId, hotkey.GetModifiersUInt(), hotkey.GetKeyUInt()))
+
+                //(uint)key
                 throw new InvalidOperationException("Couldn’t register the hot key.");
         }
 
@@ -84,8 +89,8 @@ namespace Application.hotkey {
                 // check if we got a hot key pressed.
                 if (m.Msg == WM_HOTKEY) {
                     // get the keys.
-                    Keys key = (Keys) (((int) m.LParam >> 16) & 0xFFFF);
-                    ModifierKeys modifier = (ModifierKeys) ((int) m.LParam & 0xFFFF);
+                    Keys key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);
+                    ModifierKeys modifier = (ModifierKeys)((int)m.LParam & 0xFFFF);
 
                     // invoke the event to notify the parent.
                     if (KeyPressed != null)

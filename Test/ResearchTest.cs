@@ -18,24 +18,7 @@ namespace Test {
         [Test]
         public void Research2() {
 
-            Action action;
-            Dictionary<Hotkey, Action> actions = new Dictionary<Hotkey, Action>();
-
-            Hotkey hotkey = new Hotkey(ModifierKeys.Control, System.Windows.Forms.Keys.D);
-            actions.Add(hotkey, new ButtonPressAction(""));
-
-            Hotkey hotkey2 = new Hotkey(ModifierKeys.Control, System.Windows.Forms.Keys.D);
-
-            Assert.AreEqual(hotkey.GetHashCode(), hotkey2.GetHashCode());
-
-            Assert.IsTrue(hotkey.Equals(hotkey2));
-
-
-            actions.TryGetValue(hotkey, out action);
-            Assert.NotNull(action);
-
-            actions.TryGetValue(hotkey2, out action);
-            Assert.NotNull(action);
+            
         }
     }
 }

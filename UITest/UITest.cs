@@ -18,14 +18,15 @@ namespace UITest {
 
             ApplicationConfig config = new ApplicationConfig();
 
-            Action action = new RemoveTextBlockToLeftAction('_', '/');
-            config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Back);
+            // Action action = new RemoveTextBlockToLeftAction('_', '/');
+            //config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Back);
 
-            action = new RemoveTextBlockToRightAction('_', '/');
-            config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Delete);
+            //action = new RemoveTextBlockToRightAction('_', '/');
+            //config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Delete);
 
-            //      Action action = new SelectTextBlockToLeftAction();
-            //    config.RegisterOnHotKey(action, ModifierKeys.Control, Keys.Left);
+            Action action = new SelectTextBlockToLeftAction('_', '/');
+            Hotkey hotkey = new Hotkey(Keys.Left, ModifierKeys.Control, ModifierKeys.Shift);
+            config.RegisterOnHotKey(action, hotkey);
             config.Start();
 
         }

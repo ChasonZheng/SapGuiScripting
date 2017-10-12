@@ -1,8 +1,7 @@
-﻿using Engine.text;
+﻿using AutoHotkey.Interop;
+using Engine.text;
 using SAPFEWSELib;
-using System.Windows.Forms;
 using WindowsInput;
-using WindowsInput.Native;
 
 namespace Engine.actions.removeTextBlockAction {
 
@@ -15,25 +14,33 @@ namespace Engine.actions.removeTextBlockAction {
             this.finder = new TextBlockFinderToLeft(separators);
         }
 
+
+
+
         public void Execute(ActionContext context) {
             InputSimulator simulator = new InputSimulator();
-            simulator.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
+            //simulator.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
+            //SetKeyboardState(new byte[256]);
+            //simulator.Keyboard.KeyUp(VirtualKeyCode.CONTROL);
 
-            SendKeys.SendWait("+(a)");
-            return;
+            //grab a copy of the AutoHotkey singleton instance
+            var ahk = AutoHotkeyEngine.Instance;
 
             GuiTextField textField = context.GetSession().GetInFocus() as GuiTextField;
             if (textField == null) return;
             string text = textField.Text;
             int index = finder.GetIndex(textField.Text, textField.CaretPosition);
+            System.Console.WriteLine(index);
             int difference = textField.CaretPosition - index;
+            System.Console.WriteLine(difference);
             if (difference == 0) return;
-            string command = "+(";
+            string command = "Send, {Shift Down}";
             for (var i = 0; i <= difference; i++) {
                 command += "{LEFT}";
             }
-            command += ")";
-            SendKeys.SendWait(command);
+            command += "{Shift Up}";
+            System.Console.WriteLine(command);
+            ahk.ExecRaw(command);
         }
 
     }

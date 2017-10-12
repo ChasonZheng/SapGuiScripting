@@ -12,11 +12,12 @@ namespace Engine.actions {
         }
 
         public void Execute(ActionContext context) {
-            GuiTextField textField = (GuiTextField) context.GetSession().FindById(path);
+            GuiTextField textField = (GuiTextField)context.GetSession().FindById(path);
             if (textField != null) {
                 textField.Text = TextProvider.GetText();
             }
         }
+
     }
 }
 

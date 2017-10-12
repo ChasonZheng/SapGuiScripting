@@ -1,27 +1,69 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 
-namespace Engine.controller.hotkeys { 
+namespace Engine.controller.hotkeys {
 
     public class Hotkey {
 
-        private readonly ModifierKeys modifier;
+        private readonly ModifierKeys[] modifiers;
         private readonly Keys key;
 
-        public Hotkey(ModifierKeys modifier, Keys key) {
-            this.modifier = modifier;
+        public Hotkey(Keys key, params ModifierKeys[] modifiers) {
+            this.modifiers = modifiers;
             this.key = key;
         }
 
+        public uint GetKeyUInt() {
+            return (uint)key;
+        }
+
+        public uint GetModifiersUInt() {
+            uint result = 0;
+            bool first = true;
+            foreach (var modifier in modifiers) {
+                if (first) {
+                    first = false;
+                    result = (uint)modifier;
+                    continue;
+                }
+                result = result | (uint)modifier;
+            }
+            return result;
+        }
+
+        public override string ToString() {
+            string result = "";
+            foreach (var modifier in modifiers) {
+                result += modifier + "+";
+            }
+            result += key;
+            return result;
+        }
+
+
+
         public override int GetHashCode() {
-            return modifier.GetHashCode() ^ key.GetHashCode();
+            List<System.TypeCode> list = new List<System.TypeCode>();
+
+            foreach (var modifier in modifiers) {
+                list.Add(modifier.GetTypeCode());
+            }
+            list.Add(key.GetTypeCode());
+            int hash = 0;
+            foreach (var element in list) {
+                hash = unchecked(hash +
+                    EqualityComparer<System.TypeCode>.Default.GetHashCode(element));
+            }
+            return hash;
         }
 
         public override bool Equals(object obj) {
             return Equals(obj as Hotkey);
         }
 
-        public bool Equals (Hotkey hotkey) {
-            return hotkey != null && hotkey.key == this.key && hotkey.modifier == this.modifier;
+        public bool Equals(Hotkey hotkey) {
+            return hotkey.GetHashCode() == GetHashCode();
+            // return hotkey != null && hotkey.key == this.key && hotkey.modifiers == this.modifiers;
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Forms;
-using Application.hotkey;
+﻿using Application.hotkey;
 using Engine.actions;
 using Engine.controller;
 using Engine.controller.hotkeys;
+using System;
+using System.Collections.Generic;
 using Action = Engine.actions.Action;
 
 namespace Application {
@@ -16,20 +15,18 @@ namespace Application {
         private Dictionary<Hotkey, Action> actions = new Dictionary<Hotkey, Action>();
         private readonly KeyboardHook hook = new KeyboardHook();
 
-        public void RegisterOnHotKey(Action action, ModifierKeys modifier, Keys key) {
+        public void RegisterOnHotKey(Action action, Hotkey hotkey) {
 
-            //Save action
-            Hotkey hotkey = new Hotkey(modifier, key);
             actions.Add(hotkey, action);
 
             //Register action
-            hook.RegisterHotKey(modifier, key);
-            Console.WriteLine("Registered");
+            hook.RegisterHotKey(hotkey);
+            Console.WriteLine("Registered:" + hotkey.ToString());
         }
 
         private void Hook_KeyPressed(object sender, KeyPressedEventArgs e) {
             //Console.WriteLine("HK pressed" + e.Modifier + e.Key);
-            Hotkey hotkey = new Hotkey(e.Modifier, e.Key);
+            Hotkey hotkey = new Hotkey(e.Key, e.Modifier);
             Console.WriteLine("HK pressed" + e.Modifier + e.Key);
 
             if (actions.TryGetValue(hotkey, out Action action)) {
@@ -40,9 +37,18 @@ namespace Application {
                     System.Diagnostics.Debug.WriteLine(exception.StackTrace);
                 }
             } else {
+
                 Console.WriteLine("Keine action zu" + e.Modifier + e.Key);
+
+                Console.WriteLine("dafür folgende" + actions.Count);
+                foreach (var action2 in actions) {
+                    Console.WriteLine(action2.Key.ToString());
+                    Console.WriteLine(action2.Key.GetHashCode());
+                    Console.WriteLine(e.Key.GetHashCode());
+                    Console.WriteLine(action2.Key.Equals(e.Key));
+                }
                 return;
-            };
+            }
         }
 
         public void Start() {
@@ -54,7 +60,7 @@ namespace Application {
         public void RegisterOnHotKey(Hotkey hotkey, Action action) {
             actions.Add(hotkey, action);
         }
-    
+
         public void RegisterOnFocusChanged(FocusChangedContext context, Action action) {
             throw new NotImplementedException();
         }

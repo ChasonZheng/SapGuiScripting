@@ -9,7 +9,7 @@ namespace Test.controller {
     public class ParameterHashTest {
 
         [Test]
-        public void Test() {
+        public void ActionHashMap() {
 
             Action action;
             Dictionary<Hotkey, Action> actions = new Dictionary<Hotkey, Action>();
@@ -34,6 +34,32 @@ namespace Test.controller {
 
             actions.TryGetValue(hotkey3, out action);
             Assert.NotNull(action);
+        }
+
+        [Test]
+
+        public void HotkeyEquality() {
+            Hotkey hotkey = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Control);
+            Hotkey hotkey2 = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Control);
+            Assert.AreEqual(hotkey, hotkey2);
+
+            hotkey = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Control, ModifierKeys.Shift);
+            hotkey2 = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Control, ModifierKeys.Shift);
+            Assert.AreEqual(hotkey, hotkey2);
+
+            hotkey = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Shift, ModifierKeys.Control);
+            hotkey2 = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Control, ModifierKeys.Shift);
+            Assert.AreEqual(hotkey, hotkey2);
+
+            hotkey = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Shift, ModifierKeys.Control);
+            hotkey2 = new Hotkey(System.Windows.Forms.Keys.E, ModifierKeys.Control, ModifierKeys.Shift);
+            Assert.AreNotEqual(hotkey, hotkey2);
+
+            hotkey = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Shift, ModifierKeys.Control);
+            hotkey2 = new Hotkey(System.Windows.Forms.Keys.D, ModifierKeys.Shift);
+            Assert.AreNotEqual(hotkey, hotkey2);
+
+
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Engine.actions {
                 referenceTypeField
             );
             string parameterName = "ir_scenario";
-            new MethodParameterSignatureSuggestion().Suggest(parameterName, parameter);
+            //new MethodParameterSignatureSuggestion().Suggest(parameterName, parameter);
         }
 
         private int GetCurrentIndex(ActionContext context) {

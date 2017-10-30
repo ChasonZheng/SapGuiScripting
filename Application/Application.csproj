@@ -85,9 +85,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationConfig.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="ui\config\ApplicationConfig.cs" />
     <Compile Include="hotkey\ModifierKeys.cs" />
     <Compile Include="hotkey\KeyboardHook .cs" />
     <Compile Include="Form1.cs">
@@ -96,7 +101,25 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="StartApplication.cs" />
+    <Compile Include="ui\config\ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\config\ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ui\config\ConfigUI.cs" />
+    <Compile Include="ui\config\HotkeyControlcs.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ui\config\HotkeyControlcs.Designer.cs">
+      <DependentUpon>HotkeyControlcs.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -142,6 +165,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\config\ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ui\config\HotkeyControlcs.resx">
+      <DependentUpon>HotkeyControlcs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

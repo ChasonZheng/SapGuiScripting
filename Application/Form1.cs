@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using Application.hotkey;
+using System.Drawing;
+using Application.ui.config;
 
 namespace Application {
     public partial class Form1 : Form {
@@ -47,7 +49,15 @@ namespace Application {
             this.handler = neinHandler;
         }
         private void button1_Click(object sender, EventArgs e) {
-            handler.Handle();
+            handler?.Handle();
+            ConfigForm form = new ConfigForm();
+            CheckBox box = new CheckBox();
+            box.Tag = "10";
+            box.Text = "a";
+            box.AutoSize = true;
+            box.Location = new Point(10, 50); //vertical
+            form.Controls.Add(box);
+            form.ShowDialog();
         }
 
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e) {

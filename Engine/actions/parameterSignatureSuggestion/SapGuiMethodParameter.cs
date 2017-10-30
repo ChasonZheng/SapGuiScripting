@@ -29,5 +29,15 @@ namespace Engine.actions.parameterTypeSuggestion {
         public void SetReferenceType(string referenceType) {
             referenceTypeField.Text = referenceType;
         }
+
+        public void SetModifier(ParameterModifier modifier)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SetReferenceType(ParameterReference referenceType)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

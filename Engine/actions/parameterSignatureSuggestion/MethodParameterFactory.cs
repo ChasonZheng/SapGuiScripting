@@ -9,7 +9,7 @@ namespace Engine.actions.parameterTypeSuggestion {
             this.tableControl = tableControl;
         }
 
-        public List<SapGuiMethodParameter> CreateParameters() {
+        public List<SapGuiMethodParameter> CreateParameters() { 
             GuiTableRow row = null;
             var resultList = new List<SapGuiMethodParameter>();
             var i = 0;

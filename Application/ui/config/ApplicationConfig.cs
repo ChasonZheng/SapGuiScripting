@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using Action = Engine.actions.Action;
 
-namespace Application {
+namespace Application.ui.config {
     public class ApplicationConfig : ActionMap {
 
         private Form1 mainForm;
@@ -70,7 +70,7 @@ namespace Application {
         }
 
         public void RegisterOnHotKey(object filteredAction, ModifierKeys control, object d) {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

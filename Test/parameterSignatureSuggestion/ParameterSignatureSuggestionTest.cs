@@ -1,59 +1,43 @@
-﻿using Engine.actions.parameterTypeSuggestion;
+﻿using Engine.actions.parameterSignatureSuggestion.typeSuggestion;
+using Engine.actions.parameterTypeSuggestion;
 using NUnit.Framework;
 
 namespace Test.parameterSignatureSuggestion {
+
     [TestFixture]
     public class ParameterSignatureSuggestionTest : SuggestionConsumer {
+
+        private bool callByValue;
+        private ParameterModifier modifier;
+        private ParameterReference reference;
         private string type;
-        private string modifier;
-        private string referenceType;
-        private bool hasCallByValue;
+
 
         [Test]
-        public void TestParameterSuggestion() {
-            ParameterSignatureSuggestion suggestion = new MethodParameterSignatureSuggestion();
-            suggestion.Suggest("A", this);
-   //         Xunit.Assert.Null(type);
-    //        Xunit.Assert.Null(modifier);
-     //       Xunit.Assert.Null(referenceType);
-    //        Xunit.Assert.False(hasCallByValue);
-
-            suggestion.Suggest("ir_SCENARIO", this);
-    //        Xunit.Assert.Null(type);
-    //        Xunit.Assert.Equal(modifier, "Importing");
-     //       Xunit.Assert.Equal(referenceType, "TYPE REF TO");
-      //      Xunit.Assert.False(hasCallByValue);
-
-            suggestion.Suggest("rt_SCENARIO", this);
-        //    Xunit.Assert.Null(type);
-       //     Xunit.Assert.Equal(modifier, "Returning");
-       //     Xunit.Assert.Equal(referenceType, "TYPE");
-        //    Xunit.Assert.True(hasCallByValue);
-
-            suggestion.Suggest("rr", this);
-        //    Xunit.Assert.Null(type);
-        //    Xunit.Assert.Equal(modifier, "Returning");
-        //    Xunit.Assert.Equal(referenceType, "TYPE REF TO");
-        //    Xunit.Assert.True(hasCallByValue);
-
-        }
-
-        public void SetType(string type) {
-            this.type = type;
-        }
-
-        public void SetModifier(string modifier) {
-            this.modifier = modifier;
-
+        public void ParameterSuggestion() {
+            ParameterSignatureSuggestion suggestion = new MethodParameterSignatureSuggestion(null);
+            callByValue = false;
+            modifier = ParameterModifier.IMPORTITNG;
+            reference = ParameterReference.TYPE_REF_TO;
+            type = "ZPLU_CL_SCENARIO";
+            suggestion.Suggest("ir_scenario", this);
         }
 
         public void SetCallByValue(bool hasCallByValue) {
-            this.hasCallByValue = hasCallByValue;
+            Assert.AreEqual(callByValue, hasCallByValue);
         }
 
-        public void SetReferenceType(string referenceType) {
-            this.referenceType = referenceType;
-
+        public void SetModifier(ParameterModifier modifier) {
+            Assert.AreEqual(this.modifier, modifier);
         }
+
+        public void SetReferenceType(ParameterReference referenceType) {
+            Assert.AreEqual(this.reference, referenceType);
+        }
+
+        public void SetType(string type) {
+            Assert.AreEqual(this.type, type);
+        }
+
     }
 }

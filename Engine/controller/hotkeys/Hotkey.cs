@@ -1,16 +1,21 @@
 ﻿using System.Collections.Generic;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace Engine.controller.hotkeys {
 
     public class Hotkey {
 
-        private readonly ModifierKeys[] modifiers;
-        private readonly Keys key;
+        private ModifierKeys[] modifiers { get; set; }
+        private Keys key { get; set; }
 
         public Hotkey(Keys key, params ModifierKeys[] modifiers) {
             this.modifiers = modifiers;
             this.key = key;
+        }
+
+        public Hotkey() {
+            //needed for serilization to use in settings
         }
 
         public uint GetKeyUInt() {

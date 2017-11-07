@@ -1,6 +1,6 @@
-﻿namespace Engine.actions.parameterTypeSuggestion {
+﻿namespace Engine.actions.parameterSignatureSuggestion {
 
-    public enum ParameterModifier {
+    public enum VariableVisibility {
         IMPORTITNG,
         EXPORTING,
         CHANGING,
@@ -9,14 +9,13 @@
         STATIC
     }
 
-    public enum ParameterReference {
+    public enum VariableTyping {
         TYPE,
         TYPE_REF_TO
     }
     public interface SuggestionConsumer {
         void SetType(string type);
-        void SetModifier(ParameterModifier modifier);
-        void SetCallByValue(bool hasCallByValue);
-        void SetReferenceType(ParameterReference referenceType);
+        void SetVisiblity(VariableVisibility visibility);
+        void SetTyping(VariableTyping typing);
     }
 }

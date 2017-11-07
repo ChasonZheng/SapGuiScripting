@@ -1,22 +1,21 @@
-﻿using Engine.actions.parameterTypeSuggestion;
-using SAPFEWSELib;
+﻿using SAPFEWSELib;
 
-namespace Engine.actions {
+namespace Engine.actions.parameterSignatureSuggestion {
     public class ParameterTypeSuggestionAction : Action {
 
 
         public void Execute(ActionContext context) {
             int index = GetCurrentIndex(context);
-            GuiTextField typeField = (GuiTextField) context.GetSession().FindById("abc");
+            GuiTextField typeField = (GuiTextField)context.GetSession().FindById("abc");
             GuiTextField modifierField = (GuiTextField)context.GetSession().FindById("abc"); ;
-            GuiCheckBox valueField = (GuiCheckBox) context.GetSession().FindById("abc"); ;
+            GuiCheckBox valueField = (GuiCheckBox)context.GetSession().FindById("abc"); ;
             GuiTextField referenceTypeField = (GuiTextField)context.GetSession().FindById("abc"); ;
-            SapGuiMethodParameter parameter = new SapGuiMethodParameter(
-                typeField,
-                modifierField,
-                valueField,
-                referenceTypeField
-            );
+            //   GuiClassVariable parameter = new GuiClassVariable(
+            //         typeField,
+            //        modifierField,
+            //         valueField,
+            //        referenceTypeField
+            //     );
             string parameterName = "ir_scenario";
             //new MethodParameterSignatureSuggestion().Suggest(parameterName, parameter);
         }

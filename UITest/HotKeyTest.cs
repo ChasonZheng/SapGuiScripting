@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using Engine.actions;
+﻿using Engine.actions;
 
 namespace UITest {
     public class HotKeyTest {

@@ -12,9 +12,9 @@ using System.Windows.Forms;
 namespace Application {
     public class StartApplication {
         public static void Main(string[] args) {
+
+
             ApplicationConfig config = new ApplicationConfig();
-
-
 
             ButtonPressAction quickSearchAction = new ButtonPressAction("/usr/tabsCTS/tabpTAB_MTD/ssubCSS:SAPLSEOD:0253/btnPUSH_FIND");
             ProgramFilter programRuleset = new ProgramFilter("SAPLSEOD");

@@ -1,11 +1,11 @@
 ﻿using Engine.actions.parameterSignatureSuggestion.typeSuggestion;
 
-namespace Engine.actions.parameterTypeSuggestion {
+namespace Engine.actions.parameterSignatureSuggestion {
 
     public class MethodParameterSignatureSuggestion : ParameterSignatureSuggestion {
 
         private ParameterTypeSuggestion typeSuggestion;
-        private TestTypeSuggesetion testTypeSuggesetion = new TestTypeSuggesetion();
+        private TestTypeSuggestion testTypeSuggesetion = new TestTypeSuggestion();
 
         public MethodParameterSignatureSuggestion(ParameterTypeSuggestion typeSuggestion) {
             this.typeSuggestion = typeSuggestion;
@@ -19,46 +19,46 @@ namespace Engine.actions.parameterTypeSuggestion {
 
             parameterName = parameterName.ToUpper();
 
-            consumer.SetModifier(GetModifier(parameterName));
-            consumer.SetReferenceType(GetReference(parameterName));
-            consumer.SetCallByValue(GetCallByValue(parameterName));
+            consumer.SetVisiblity(GetVisiblity(parameterName));
+            consumer.SetTyping(GetTyping(parameterName));
+            //consumer.SetCallByValue(GetCallByValue(parameterName));
             consumer.SetType(testTypeSuggesetion.SuggestType(parameterName));
         }
 
-        private ParameterModifier GetModifier(string parameterName) {
+        private VariableVisibility GetVisiblity(string parameterName) {
             switch (parameterName.Substring(0, 1)) {
                 case "I":
-                    return ParameterModifier.IMPORTITNG;
+                    return VariableVisibility.IMPORTITNG;
                 case "E":
-                    return ParameterModifier.EXPORTING;
+                    return VariableVisibility.EXPORTING;
                 case "R":
-                    return ParameterModifier.RETURNING;
+                    return VariableVisibility.RETURNING;
                 case "C":
-                    return ParameterModifier.CHANGING;
+                    return VariableVisibility.CHANGING;
                 case "M":
-                    return ParameterModifier.INSTANCE;
+                    return VariableVisibility.INSTANCE;
                 case "S":
-                    return ParameterModifier.STATIC;
+                    return VariableVisibility.STATIC;
                 default:
-                    return ParameterModifier.STATIC;
+                    return VariableVisibility.STATIC;
             }
         }
 
-        private ParameterReference GetReference(string parameterName) {
+        private VariableTyping GetTyping(string parameterName) {
             switch (parameterName.Substring(1, 1).ToUpper()) {
                 case "V":
                 case "S":
                 case "T":
-                    return ParameterReference.TYPE;
+                    return VariableTyping.TYPE;
                 case "R":
-                    return ParameterReference.TYPE_REF_TO;
+                    return VariableTyping.TYPE_REF_TO;
                 default:
-                    return ParameterReference.TYPE;
+                    return VariableTyping.TYPE;
             }
         }
 
-        private bool GetCallByValue(string parameterName) {
-            return parameterName.Substring(0, 1).Equals('R');
-        }
+        //   private bool GetCallByValue(string parameterName) {
+        //      return parameterName.Substring(0, 1).Equals('R');
+        //  }
     }
 }

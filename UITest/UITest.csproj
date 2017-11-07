@@ -90,6 +90,7 @@
     <Compile Include="ClassQuickSearchTest.cs" />
     <Compile Include="HotKeyTest.cs" />
     <Compile Include="MainClass.cs" />
+    <Compile Include="MethodParameterFactoryTest.cs" />
     <Compile Include="ScriptTest.cs" />
     <Compile Include="TestForm.cs">
       <SubType>Form</SubType>

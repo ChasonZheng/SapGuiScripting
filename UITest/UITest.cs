@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Application.ui.config;
 using Engine.actions;
 using Engine.actions.removeTextBlockAction;
 using Engine.controller.hotkeys;
